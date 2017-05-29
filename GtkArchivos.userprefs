@@ -1,0 +1,24 @@
+﻿<Properties StartupItem="GtkArchivos/GtkArchivos.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos/Win_Telefono.cs">
+    <Files>
+      <File FileName="GtkArchivos/Program.cs" Line="11" Column="16" />
+      <File FileName="GtkArchivos/Win_Telefono.cs" Line="17" Column="60" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GtkArchivos" expanded="True">
+            <Node name="GtkArchivos" expanded="True">
+              <Node name="Win_Telefono.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
