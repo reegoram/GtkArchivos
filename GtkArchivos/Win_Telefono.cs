@@ -1,14 +1,29 @@
 ﻿using System;
+using System.Windows.Forms;
+using Gtk;
 
 namespace GtkArchivos
 {
 	public partial class Win_Telefono : Gtk.Window
 	{
+		
+		// string ruta = @"C:\TELEFONO\telefono.dat";	/* Ruta Windows */
+		string ruta = @"telefono.dat";	/* Ruta Linux(root) */
+		
+		op_Telefono Telefono;
+		
+		int id = 0; 
+		string nombre = string.Empty;
+		string marca = string.Empty;
+		string modelo = string.Empty;
+		string compania = string.Empty;
+
 		public Win_Telefono () :
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
 
+			Telefono = new op_Telefono (ruta);
 
 			Gtk.TreeViewColumn colID = new Gtk.TreeViewColumn();
 			colID.Title = "ID";
@@ -58,7 +73,19 @@ namespace GtkArchivos
 
 		protected void OnBtnGuardarClicked (object sender, EventArgs e)
 		{
-			
+			id = int.Parse (entryID.Text);
+			nombre = entryNombre.Text;
+			marca = entryMarca.Text;
+			modelo = entryModelo.Text;
+			compania = entryCompania.Text;
+
+			string d = Telefono.InsertarDatos (ruta, id, nombre, marca, modelo, compania);
+			if (d == "Guardado")
+				MessageBox.Show ("Datos Guardados Exitosamente", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			else
+				MessageBox.Show ("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
 		}
 
 		protected void OnBtnActualizarClicked (object sender, EventArgs e)

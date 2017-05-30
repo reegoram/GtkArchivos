@@ -56,6 +56,7 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -70,6 +71,7 @@
     <Compile Include="gtk-gui\GtkArchivos.Win_Telefono.cs" />
     <Compile Include="Win_Tel.cs" />
     <Compile Include="gtk-gui\GtkArchivos.Win_Tel.cs" />
+    <Compile Include="op_Telefono.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

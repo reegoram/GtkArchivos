@@ -4,3 +4,9 @@
 /root/Documents/GtkArchivos/GtkArchivos/bin/Debug/GtkArchivos.exe
 /root/Documents/GtkArchivos/GtkArchivos/obj/x86/Debug/GtkArchivos.exe
 /root/Documents/GtkArchivos/GtkArchivos/obj/x86/Debug/GtkArchivos.pdb
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/obj/x86/Debug/GtkArchivos.gtk-gui.gui.stetic
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/bin/Debug/GtkArchivos.pdb
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/bin/Debug/GtkArchivos.exe
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/obj/x86/Debug/GtkArchivos.exe
+/root/Documents/Mono_Projects/GtkArchivos/GtkArchivos/obj/x86/Debug/GtkArchivos.pdb

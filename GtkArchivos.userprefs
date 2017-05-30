@@ -2,8 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos/Win_Telefono.cs">
     <Files>
-      <File FileName="GtkArchivos/Program.cs" Line="11" Column="16" />
-      <File FileName="GtkArchivos/Win_Telefono.cs" Line="17" Column="60" />
+      <File FileName="GtkArchivos/Program.cs" Line="8" Column="42" />
+      <File FileName="GtkArchivos/Win_Telefono.cs" Line="11" Column="19" />
+      <File FileName="GtkArchivos/op_Telefono.cs" Line="43" Column="20" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
