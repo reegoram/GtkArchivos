@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
 using Gtk;
 
 namespace GtkArchivos
@@ -9,8 +10,10 @@ namespace GtkArchivos
 		
 		// string ruta = @"C:\TELEFONO\telefono.dat";	/* Ruta Windows */
 		string ruta = @"telefono.dat";	/* Ruta Linux(root) */
+		BinaryReader br;
 		
 		op_Telefono Telefono;
+		Gtk.ListStore DataTel;
 		
 		int id = 0; 
 		string nombre = string.Empty;
@@ -24,66 +27,47 @@ namespace GtkArchivos
 			this.Build ();
 
 			Telefono = new op_Telefono (ruta);
-
-			Gtk.TreeViewColumn colID = new Gtk.TreeViewColumn();
-			colID.Title = "ID";
-			Gtk.TreeViewColumn colNombre = new Gtk.TreeViewColumn ();
-			colNombre.Title = "Nombre";
-			Gtk.TreeViewColumn colMarca = new Gtk.TreeViewColumn ();
-			colMarca.Title = "Marca";
-			Gtk.TreeViewColumn colModelo = new Gtk.TreeViewColumn ();
-			colModelo.Title = "Modelo";
-			Gtk.TreeViewColumn colCompania = new Gtk.TreeViewColumn ();
-			colCompania.Title = "Compañia";
-
-			tvVerDatos.AppendColumn (colID);
-			tvVerDatos.AppendColumn (colNombre);
-			tvVerDatos.AppendColumn (colMarca);
-			tvVerDatos.AppendColumn (colModelo);
-			tvVerDatos.AppendColumn (colCompania);
-
-			Gtk.ListStore DataTel = new Gtk.ListStore (typeof(string), typeof(string), typeof(string), typeof(string), typeof(string));
-
-			tvVerDatos.Model = DataTel;
-
-			DataTel.AppendValues ("1", "Moto G4", "Motorola", "XT1627", "Libre");
-			DataTel.AppendValues ("2", "Moto G3", "Motorola", "XT1038", "AT&T");
-			DataTel.AppendValues ("3", "Huawei P8", "Huawei", "P8", "AT&T");
-
-			Gtk.CellRendererText celID = new Gtk.CellRendererText();
-			colID.PackStart (celID, true);
-			Gtk.CellRendererText celNombre = new Gtk.CellRendererText ();
-			colNombre.PackStart (celNombre, true);
-			Gtk.CellRendererText celMarca = new Gtk.CellRendererText ();
-			colMarca.PackStart (celMarca, true);
-			Gtk.CellRendererText celModelo = new Gtk.CellRendererText ();
-			colModelo.PackStart (celModelo, true);
-			Gtk.CellRendererText celCompania = new Gtk.CellRendererText ();
-			colCompania.PackStart (celCompania, true);
-
-			colID.AddAttribute (celID, "text", 0);
-			colNombre.AddAttribute (celNombre, "text", 1);
-			colMarca.AddAttribute (celMarca, "text", 2);
-			colModelo.AddAttribute (celModelo, "text", 3);
-			colCompania.AddAttribute (celCompania, "text", 4);
-
+			Telefono.LeerDatos (ruta);
+			Telefono.Filtro (fChooserImage);
+			DataTel = Telefono.GenerarTreeView (tvVerDatos, DataTel);
 
 		}
 
-
 		protected void OnBtnGuardarClicked (object sender, EventArgs e)
-		{
-			id = int.Parse (entryID.Text);
-			nombre = entryNombre.Text;
-			marca = entryMarca.Text;
-			modelo = entryModelo.Text;
-			compania = entryCompania.Text;
+		{			
+			try {				
+				id = int.Parse (entryID.Text);
+				nombre = entryNombre.Text;
+				marca = entryMarca.Text;
+				modelo = entryModelo.Text;
+				compania = entryCompania.Text;
 
-			string d = Telefono.InsertarDatos (ruta, id, nombre, marca, modelo, compania);
-			if (d == "Guardado")
-				MessageBox.Show ("Datos Guardados Exitosamente", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			else
-				MessageBox.Show ("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				
+				string d = Telefono.InsertarDatos (ruta, id, nombre, marca, modelo, compania);
+				if (d == "Guardado")
+					MessageBox.Show ("Datos Guardados Exitosamente", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				else
+					MessageBox.Show ("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				string y = Telefono.LeerDatos(ruta);
+				if (y == "Leido") {					
+					//DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
+					
+					/* Agregando Datos al Modelo */
+					DataTel.AppendValues (id.ToString (), nombre.ToString (), marca.ToString (), modelo.ToString (), compania.ToString ()); 
+					
+				}
+				else{
+					MessageBox.Show("No Leido");
+				}
+
+
+				ResetEntry();
+				
+			} catch (Exception ex) {
+				ValidarEntry ();
+				System.Diagnostics.Debug.WriteLine (ex.ToString());
+			}
 
 
 		}
@@ -101,6 +85,58 @@ namespace GtkArchivos
 		protected void OnBtnSalirClicked (object sender, EventArgs e)
 		{
 			Gtk.Application.Quit ();
+		}
+
+
+		/*** FUNCIONES ***/
+
+		public void ValidarEntry(){
+			if (entryID.Text == string.Empty || entryNombre.Text == string.Empty || entryMarca.Text == string.Empty 
+				|| entryModelo.Text == string.Empty || entryCompania.Text == string.Empty) {
+				MessageBox.Show("Es necesario rellenar todo el formulario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+			ResetEntry ();
+
+		}
+
+		public void ResetEntry(){
+			entryID.Text = string.Empty;
+			entryNombre.Text = string.Empty;
+			entryMarca.Text = string.Empty;
+			entryModelo.Text = string.Empty;
+			entryCompania.Text = string.Empty;
+		}
+
+		public void ElegirImagen(){
+			Gtk.FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Choose the file to open", this, FileChooserAction.Open, "Cancel", ResponseType.Cancel, "Open", ResponseType.Accept);
+
+			if (filechooser.Run () == (int)ResponseType.Accept) {
+				System.IO.FileStream file = System.IO.File.OpenRead (filechooser.Filename);
+				file.Close ();
+			}
+
+			filechooser.Destroy ();
+
+		}
+
+
+
+
+
+
+
+
+		protected void OnBtnSelecImagenClicked (object sender, EventArgs e)
+		{
+			ElegirImagen ();
+		}
+
+		protected void OnFChooserImageButtonPressEvent (object o, ButtonPressEventArgs args)
+		{
+			
+
+
 		}
 	}
 }

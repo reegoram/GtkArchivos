@@ -10,8 +10,9 @@
   </import>
   <widget class="Gtk.Window" id="GtkArchivos.Win_Telefono" design-size="667 484">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">Win_Telefono</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Title" translatable="yes">Control de Venta de Teléfonos</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="BorderWidth">4</property>
     <child>
       <widget class="Gtk.HBox" id="hbox1">
         <property name="MemberName" />
@@ -208,7 +209,29 @@
                               <placeholder />
                             </child>
                             <child>
-                              <placeholder />
+                              <widget class="Gtk.Button" id="btnSelecImagen">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="Type">TextOnly</property>
+                                <property name="Label" translatable="yes">GtkButton</property>
+                                <property name="UseUnderline">True</property>
+                                <signal name="Clicked" handler="OnBtnSelecImagenClicked" />
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">2</property>
+                                <property name="BottomAttach">3</property>
+                                <property name="LeftAttach">2</property>
+                                <property name="RightAttach">3</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
                             </child>
                             <child>
                               <widget class="Gtk.Entry" id="entryCompania">
@@ -253,8 +276,9 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.FileChooserButton" id="filechooserbutton1">
+                              <widget class="Gtk.FileChooserButton" id="fChooserImage">
                                 <property name="MemberName" />
+                                <signal name="ButtonPressEvent" handler="OnFChooserImageButtonPressEvent" />
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
@@ -300,8 +324,9 @@
                                 <property name="LeftAttach">2</property>
                                 <property name="RightAttach">3</property>
                                 <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
-                                <property name="XExpand">True</property>
+                                <property name="XExpand">False</property>
                                 <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
@@ -542,7 +567,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Image" id="image2">
+              <widget class="Gtk.Image" id="imgImage">
                 <property name="MemberName" />
               </widget>
               <packing>
