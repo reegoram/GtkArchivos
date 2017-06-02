@@ -90,7 +90,7 @@ namespace GtkArchivos
 			// Widget GtkArchivos.Win_Telefono
 			this.Name = "GtkArchivos.Win_Telefono";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Control de Venta de Teléfonos");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(4));
 			// Container child GtkArchivos.Win_Telefono.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
@@ -126,7 +126,7 @@ namespace GtkArchivos
 			this.table2.Add (this.entryID);
 			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table2 [this.entryID]));
 			w1.LeftAttach = ((uint)(1));
-			w1.RightAttach = ((uint)(4));
+			w1.RightAttach = ((uint)(2));
 			w1.XPadding = ((uint)(12));
 			w1.XOptions = ((global::Gtk.AttachOptions)(0));
 			w1.YOptions = ((global::Gtk.AttachOptions)(0));
@@ -141,8 +141,9 @@ namespace GtkArchivos
 			w2.TopAttach = ((uint)(2));
 			w2.BottomAttach = ((uint)(3));
 			w2.LeftAttach = ((uint)(1));
-			w2.RightAttach = ((uint)(4));
+			w2.RightAttach = ((uint)(2));
 			w2.XPadding = ((uint)(12));
+			w2.XOptions = ((global::Gtk.AttachOptions)(4));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.entryNombre = new global::Gtk.Entry ();
@@ -155,7 +156,7 @@ namespace GtkArchivos
 			w3.TopAttach = ((uint)(1));
 			w3.BottomAttach = ((uint)(2));
 			w3.LeftAttach = ((uint)(1));
-			w3.RightAttach = ((uint)(4));
+			w3.RightAttach = ((uint)(2));
 			w3.XPadding = ((uint)(12));
 			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
@@ -403,6 +404,7 @@ namespace GtkArchivos
 			this.vbox5 = new global::Gtk.VBox ();
 			this.vbox5.Name = "vbox5";
 			this.vbox5.Spacing = 6;
+			this.vbox5.BorderWidth = ((uint)(3));
 			// Container child vbox5.Gtk.Box+BoxChild
 			this.hseparator4 = new global::Gtk.HSeparator ();
 			this.hseparator4.Name = "hseparator4";
@@ -413,6 +415,8 @@ namespace GtkArchivos
 			w30.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
 			this.imgImage = new global::Gtk.Image ();
+			this.imgImage.WidthRequest = 110;
+			this.imgImage.HeightRequest = 125;
 			this.imgImage.Name = "imgImage";
 			this.vbox5.Add (this.imgImage);
 			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.imgImage]));
@@ -463,8 +467,8 @@ namespace GtkArchivos
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 667;
-			this.DefaultHeight = 484;
+			this.DefaultWidth = 785;
+			this.DefaultHeight = 425;
 			this.Show ();
 			this.fChooserImage.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnFChooserImageButtonPressEvent);
 			this.btnSelecImagen.Clicked += new global::System.EventHandler (this.OnBtnSelecImagenClicked);

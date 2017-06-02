@@ -28,7 +28,7 @@ namespace GtkArchivos
 
 			Telefono = new op_Telefono (ruta);
 			Telefono.LeerDatos (ruta);
-			Telefono.Filtro (fChooserImage);
+			//Telefono.Filtro (fChooserImage);
 			DataTel = Telefono.GenerarTreeView (tvVerDatos, DataTel);
 
 		}
@@ -87,6 +87,17 @@ namespace GtkArchivos
 			Gtk.Application.Quit ();
 		}
 
+		protected void OnBtnSelecImagenClicked (object sender, EventArgs e)
+		{
+			SeleccionarImagen ();
+		}
+
+		protected void OnFChooserImageButtonPressEvent (object o, ButtonPressEventArgs args)
+		{
+
+
+		}
+
 
 		/*** FUNCIONES ***/
 
@@ -108,36 +119,35 @@ namespace GtkArchivos
 			entryCompania.Text = string.Empty;
 		}
 
-		public void ElegirImagen(){
-			Gtk.FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Choose the file to open", this, FileChooserAction.Open, "Cancel", ResponseType.Cancel, "Open", ResponseType.Accept);
+		public void SeleccionarImagen(){
+			Gtk.FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Elegir imágen", 
+				this, FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
+			Telefono.Filtro (filechooser);
 
 			if (filechooser.Run () == (int)ResponseType.Accept) {
-				System.IO.FileStream file = System.IO.File.OpenRead (filechooser.Filename);
+				FileStream file = File.OpenRead (filechooser.Filename);
+				string url = filechooser.Uri;
+
+				imgImage.File = url;
+				MessageBox.Show (url.ToString());
+
 				file.Close ();
 			}
 
 			filechooser.Destroy ();
 
-		}
-
-
-
-
-
-
-
-
-		protected void OnBtnSelecImagenClicked (object sender, EventArgs e)
-		{
-			ElegirImagen ();
-		}
-
-		protected void OnFChooserImageButtonPressEvent (object o, ButtonPressEventArgs args)
-		{
-			
-
 
 		}
+
+
+
+
+
+
+
+
+
+		
 	}
 }
 

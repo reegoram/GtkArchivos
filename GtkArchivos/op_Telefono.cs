@@ -101,7 +101,7 @@ namespace GtkArchivos
 			return ls;
 		}
 
-		public void Filtro(FileChooserButton fChooser){
+		public void Filtro(FileChooserDialog fChooser){
 			FileFilter filter = new FileFilter ();
 			filter.Name = "Archivo de Imágen (*.jpg, *.jpeg, *.png)";
 			filter.AddPattern ("*.jpg");
