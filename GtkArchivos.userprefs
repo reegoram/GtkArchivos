@@ -3,8 +3,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos/Win_Telefono.cs">
     <Files>
       <File FileName="GtkArchivos/Program.cs" Line="1" Column="1" />
-      <File FileName="GtkArchivos/Win_Telefono.cs" Line="96" Column="4" />
-      <File FileName="GtkArchivos/op_Telefono.cs" Line="104" Column="39" />
+      <File FileName="GtkArchivos/Win_Telefono.cs" Line="131" Column="5" />
+      <File FileName="GtkArchivos/op_Telefono.cs" Line="112" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

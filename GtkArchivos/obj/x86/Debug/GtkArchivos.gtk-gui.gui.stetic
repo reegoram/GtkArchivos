@@ -11,7 +11,7 @@
   <widget class="Gtk.Window" id="GtkArchivos.Win_Telefono" design-size="785 425">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Control de Venta de Teléfonos</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">Center</property>
     <property name="BorderWidth">4</property>
     <child>
       <widget class="Gtk.HBox" id="hbox1">
@@ -228,20 +228,23 @@
                               <placeholder />
                             </child>
                             <child>
+                              <placeholder />
+                            </child>
+                            <child>
                               <widget class="Gtk.Button" id="btnSelecImagen">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextOnly</property>
-                                <property name="Label" translatable="yes">GtkButton</property>
+                                <property name="Label" translatable="yes">Seleccionar..</property>
                                 <property name="UseUnderline">True</property>
                                 <signal name="Clicked" handler="OnBtnSelecImagenClicked" />
                               </widget>
                               <packing>
                                 <property name="TopAttach">2</property>
                                 <property name="BottomAttach">3</property>
-                                <property name="LeftAttach">2</property>
-                                <property name="RightAttach">3</property>
-                                <property name="AutoSize">True</property>
+                                <property name="LeftAttach">1</property>
+                                <property name="RightAttach">2</property>
+                                <property name="AutoSize">False</property>
                                 <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
                                 <property name="XExpand">False</property>
@@ -265,8 +268,9 @@
                                 <property name="LeftAttach">1</property>
                                 <property name="RightAttach">2</property>
                                 <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
-                                <property name="XExpand">True</property>
+                                <property name="XExpand">False</property>
                                 <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
@@ -285,28 +289,9 @@
                                 <property name="LeftAttach">1</property>
                                 <property name="RightAttach">2</property>
                                 <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
-                                <property name="XExpand">True</property>
-                                <property name="XFill">True</property>
-                                <property name="XShrink">False</property>
-                                <property name="YExpand">False</property>
-                                <property name="YFill">True</property>
-                                <property name="YShrink">False</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="Gtk.FileChooserButton" id="fChooserImage">
-                                <property name="MemberName" />
-                                <signal name="ButtonPressEvent" handler="OnFChooserImageButtonPressEvent" />
-                              </widget>
-                              <packing>
-                                <property name="TopAttach">2</property>
-                                <property name="BottomAttach">3</property>
-                                <property name="LeftAttach">1</property>
-                                <property name="RightAttach">2</property>
-                                <property name="AutoSize">True</property>
-                                <property name="YOptions">Fill</property>
-                                <property name="XExpand">True</property>
+                                <property name="XExpand">False</property>
                                 <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
@@ -324,8 +309,9 @@
                                 <property name="LeftAttach">1</property>
                                 <property name="RightAttach">2</property>
                                 <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
-                                <property name="XExpand">True</property>
+                                <property name="XExpand">False</property>
                                 <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
@@ -343,9 +329,8 @@
                                 <property name="LeftAttach">2</property>
                                 <property name="RightAttach">3</property>
                                 <property name="AutoSize">True</property>
-                                <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
-                                <property name="XExpand">False</property>
+                                <property name="XExpand">True</property>
                                 <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
@@ -449,64 +434,60 @@
                                   <widget class="Gtk.Button" id="btnGuardar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextOnly</property>
+                                    <property name="Type">TextAndIcon</property>
+                                    <property name="Icon">stock:gtk-save Button</property>
                                     <property name="Label" translatable="yes">Guardar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnGuardarClicked" />
                                   </widget>
                                   <packing>
                                     <property name="Position">0</property>
-                                    <property name="AutoSize">True</property>
-                                    <property name="Expand">False</property>
-                                    <property name="Fill">False</property>
+                                    <property name="AutoSize">False</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <widget class="Gtk.Button" id="btnActualizar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextOnly</property>
-                                    <property name="Label" translatable="yes">Actualizar</property>
+                                    <property name="Type">TextAndIcon</property>
+                                    <property name="Icon">stock:gtk-refresh Button</property>
+                                    <property name="Label" translatable="yes">_Actualizar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnActualizarClicked" />
                                   </widget>
                                   <packing>
                                     <property name="Position">1</property>
-                                    <property name="AutoSize">True</property>
-                                    <property name="Expand">False</property>
-                                    <property name="Fill">False</property>
+                                    <property name="AutoSize">False</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <widget class="Gtk.Button" id="btnEliminar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextOnly</property>
-                                    <property name="Label" translatable="yes">Eliminar</property>
+                                    <property name="Type">TextAndIcon</property>
+                                    <property name="Icon">stock:gtk-delete Button</property>
+                                    <property name="Label" translatable="yes">_Eliminar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnEliminarClicked" />
                                   </widget>
                                   <packing>
                                     <property name="Position">2</property>
-                                    <property name="AutoSize">True</property>
-                                    <property name="Expand">False</property>
-                                    <property name="Fill">False</property>
+                                    <property name="AutoSize">False</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <widget class="Gtk.Button" id="btnSalir">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextOnly</property>
-                                    <property name="Label" translatable="yes">Salir</property>
+                                    <property name="Type">TextAndIcon</property>
+                                    <property name="Icon">stock:gtk-close Button</property>
+                                    <property name="Label" translatable="yes">_Salir</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnSalirClicked" />
                                   </widget>
                                   <packing>
                                     <property name="Position">3</property>
-                                    <property name="AutoSize">True</property>
-                                    <property name="Expand">False</property>
-                                    <property name="Fill">False</property>
+                                    <property name="AutoSize">False</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -587,10 +568,10 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Image" id="imgImage">
+              <widget class="Gtk.Image" id="imgVisual">
                 <property name="MemberName" />
-                <property name="WidthRequest">110</property>
-                <property name="HeightRequest">125</property>
+                <property name="WidthRequest">150</property>
+                <property name="HeightRequest">165</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -626,7 +607,7 @@
             <property name="MemberName" />
             <property name="ShadowType">None</property>
             <child>
-              <widget class="Gtk.Alignment" id="GtkAlignment1">
+              <widget class="Gtk.Alignment" id="GtkAlignment4">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
                 <property name="Yalign">0</property>

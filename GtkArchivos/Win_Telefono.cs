@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 using Gtk;
 
 namespace GtkArchivos
@@ -10,6 +11,10 @@ namespace GtkArchivos
 		
 		// string ruta = @"C:\TELEFONO\telefono.dat";	/* Ruta Windows */
 		string ruta = @"telefono.dat";	/* Ruta Linux(root) */
+		string rutaImage = @"image.jpg";
+
+
+
 		BinaryReader br;
 		
 		op_Telefono Telefono;
@@ -28,8 +33,8 @@ namespace GtkArchivos
 
 			Telefono = new op_Telefono (ruta);
 			Telefono.LeerDatos (ruta);
-			//Telefono.Filtro (fChooserImage);
 			DataTel = Telefono.GenerarTreeView (tvVerDatos, DataTel);
+
 
 		}
 
@@ -92,11 +97,6 @@ namespace GtkArchivos
 			SeleccionarImagen ();
 		}
 
-		protected void OnFChooserImageButtonPressEvent (object o, ButtonPressEventArgs args)
-		{
-
-
-		}
 
 
 		/*** FUNCIONES ***/
@@ -120,24 +120,32 @@ namespace GtkArchivos
 		}
 
 		public void SeleccionarImagen(){
-			Gtk.FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Elegir imágen", 
+			FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Seleccionar imágen", 
 				this, FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
+			
 			Telefono.Filtro (filechooser);
 
+
+
 			if (filechooser.Run () == (int)ResponseType.Accept) {
+
 				FileStream file = File.OpenRead (filechooser.Filename);
-				string url = filechooser.Uri;
-
-				imgImage.File = url;
-				MessageBox.Show (url.ToString());
-
+				this.imgVisual.Pixbuf = new Gdk.Pixbuf (file);
+				imgVisual.Pixbuf.ScaleSimple (imgVisual.Pixbuf.Width, imgVisual.Pixbuf.Height, 0);
 				file.Close ();
+
 			}
 
 			filechooser.Destroy ();
 
 
 		}
+
+
+		public void EliminarDatosTreeView(Gtk.TreeView treeV){
+			
+		}
+
 
 
 
