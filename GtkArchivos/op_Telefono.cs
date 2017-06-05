@@ -21,19 +21,20 @@ namespace GtkArchivos
 			fs = new FileStream (ruta, FileMode.Append, FileAccess.Write);
 			fs.Close ();
 
+
 		}
 
 
 		public string InsertarDatos(string ruta, int ID, string nombre, string marca, string modelo, string compania){
 			try {
-				fs = new FileStream(ruta, FileMode.Append, FileAccess.Write);
+				fs = new FileStream(ruta, FileMode.Append, FileAccess.Write, FileShare.None);
 				bw = new BinaryWriter(fs);
 
-				bw.Write(ID);
-				bw.Write(nombre);
-				bw.Write(marca);
-				bw.Write(modelo);
-				bw.Write(compania);
+				bw.Write(ID.ToString());
+				bw.Write(nombre.ToString());
+				bw.Write(marca.ToString());
+				bw.Write(modelo.ToString());
+				bw.Write(compania.ToString());
 
 				fs.Close();
 				bw.Close();
@@ -47,8 +48,11 @@ namespace GtkArchivos
 
 		}
 
-		public string LeerDatos (string ruta){
+		public string LeerDatos (string ruta, Gtk.Entry entry){
 			try {
+				StreamReader sr = new StreamReader (ruta);
+				entry.Text = sr.ReadLine ();
+				sr.Close ();
 				br = new BinaryReader(File.Open(ruta, FileMode.Open));
 				System.Diagnostics.Debug.WriteLine(br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
 				br.Close();

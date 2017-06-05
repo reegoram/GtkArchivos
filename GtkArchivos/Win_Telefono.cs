@@ -11,9 +11,6 @@ namespace GtkArchivos
 		
 		// string ruta = @"C:\TELEFONO\telefono.dat";	/* Ruta Windows */
 		string ruta = @"telefono.dat";	/* Ruta Linux(root) */
-		string rutaImage = @"image.jpg";
-
-
 
 		BinaryReader br;
 		
@@ -32,9 +29,8 @@ namespace GtkArchivos
 			this.Build ();
 
 			Telefono = new op_Telefono (ruta);
-			Telefono.LeerDatos (ruta);
+			Telefono.LeerDatos (ruta, entryID);
 			DataTel = Telefono.GenerarTreeView (tvVerDatos, DataTel);
-
 
 		}
 
@@ -54,9 +50,9 @@ namespace GtkArchivos
 				else
 					MessageBox.Show ("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-				string y = Telefono.LeerDatos(ruta);
+				string y = Telefono.LeerDatos(ruta, entryID);
 				if (y == "Leido") {					
-					//DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
+					DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
 					
 					/* Agregando Datos al Modelo */
 					DataTel.AppendValues (id.ToString (), nombre.ToString (), marca.ToString (), modelo.ToString (), compania.ToString ()); 
