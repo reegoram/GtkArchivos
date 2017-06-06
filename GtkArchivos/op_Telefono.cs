@@ -8,8 +8,9 @@ namespace GtkArchivos
 	public class op_Telefono
 	{
 		FileStream fs;
+		//StreamReader sr;
 		BinaryWriter bw;
-		BinaryReader br;
+		//BinaryReader br;
 
 		public string nombre { get; set; }
 		public string marca { get; set; }
@@ -48,14 +49,10 @@ namespace GtkArchivos
 
 		}
 
-		public string LeerDatos (string ruta, Gtk.Entry entry){
+		public string LeerDatos (string ruta){
 			try {
-				StreamReader sr = new StreamReader (ruta);
-				entry.Text = sr.ReadLine ();
-				sr.Close ();
-				br = new BinaryReader(File.Open(ruta, FileMode.Open));
-				System.Diagnostics.Debug.WriteLine(br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
-				br.Close();
+
+
 			} catch (Exception ex) {
 				return ex.Message;
 			}
@@ -115,6 +112,43 @@ namespace GtkArchivos
 
 		}
 
+
+		public void ValidarEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5){
+			if (ent1.Text == string.Empty || ent2.Text == string.Empty || ent3.Text == string.Empty 
+				|| ent4.Text == string.Empty || ent5.Text == string.Empty) {
+				MessageBox.Show("Es necesario rellenar todo el formulario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+			ResetEntry (ent1, ent2, ent3, ent4, ent5);
+
+		}
+
+		public void ResetEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5){
+			ent1.Text = string.Empty;
+			ent2.Text = string.Empty;
+			ent3.Text = string.Empty;
+			ent4.Text = string.Empty;
+			ent5.Text = string.Empty;
+		}
+
+		public void SeleccionarImagen(Image imgV, Window win){
+			FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Seleccionar imágen", win ,FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
+
+			Filtro (filechooser);
+
+			if (filechooser.Run () == (int)ResponseType.Accept) {
+
+				FileStream file = File.OpenRead (filechooser.Filename);
+				imgV.Pixbuf = new Gdk.Pixbuf (file, 150, 165);
+				imgV.Pixbuf.ScaleSimple (imgV.Pixbuf.Width, imgV.Pixbuf.Height, 0);
+				file.Close ();
+
+			}
+
+			filechooser.Destroy ();
+
+
+		}
 
 
 

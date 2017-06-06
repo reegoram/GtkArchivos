@@ -12,8 +12,6 @@ namespace GtkArchivos
 		// string ruta = @"C:\TELEFONO\telefono.dat";	/* Ruta Windows */
 		string ruta = @"telefono.dat";	/* Ruta Linux(root) */
 
-		BinaryReader br;
-		
 		op_Telefono Telefono;
 		Gtk.ListStore DataTel;
 		
@@ -29,7 +27,7 @@ namespace GtkArchivos
 			this.Build ();
 
 			Telefono = new op_Telefono (ruta);
-			Telefono.LeerDatos (ruta, entryID);
+			//Telefono.LeerDatos (ruta, entryID);
 			DataTel = Telefono.GenerarTreeView (tvVerDatos, DataTel);
 
 		}
@@ -50,9 +48,9 @@ namespace GtkArchivos
 				else
 					MessageBox.Show ("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-				string y = Telefono.LeerDatos(ruta, entryID);
+				string y = Telefono.LeerDatos(ruta);
 				if (y == "Leido") {					
-					DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
+					//DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
 					
 					/* Agregando Datos al Modelo */
 					DataTel.AppendValues (id.ToString (), nombre.ToString (), marca.ToString (), modelo.ToString (), compania.ToString ()); 
@@ -63,10 +61,10 @@ namespace GtkArchivos
 				}
 
 
-				ResetEntry();
+				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 				
 			} catch (Exception ex) {
-				ValidarEntry ();
+				Telefono.ValidarEntry (entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 				System.Diagnostics.Debug.WriteLine (ex.ToString());
 			}
 
@@ -90,52 +88,12 @@ namespace GtkArchivos
 
 		protected void OnBtnSelecImagenClicked (object sender, EventArgs e)
 		{
-			SeleccionarImagen ();
+			Telefono.SeleccionarImagen (imgVisual, this);
 		}
 
 
 
 		/*** FUNCIONES ***/
-
-		public void ValidarEntry(){
-			if (entryID.Text == string.Empty || entryNombre.Text == string.Empty || entryMarca.Text == string.Empty 
-				|| entryModelo.Text == string.Empty || entryCompania.Text == string.Empty) {
-				MessageBox.Show("Es necesario rellenar todo el formulario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return;
-			}
-			ResetEntry ();
-
-		}
-
-		public void ResetEntry(){
-			entryID.Text = string.Empty;
-			entryNombre.Text = string.Empty;
-			entryMarca.Text = string.Empty;
-			entryModelo.Text = string.Empty;
-			entryCompania.Text = string.Empty;
-		}
-
-		public void SeleccionarImagen(){
-			FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Seleccionar imágen", 
-				this, FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
-			
-			Telefono.Filtro (filechooser);
-
-
-
-			if (filechooser.Run () == (int)ResponseType.Accept) {
-
-				FileStream file = File.OpenRead (filechooser.Filename);
-				this.imgVisual.Pixbuf = new Gdk.Pixbuf (file);
-				imgVisual.Pixbuf.ScaleSimple (imgVisual.Pixbuf.Width, imgVisual.Pixbuf.Height, 0);
-				file.Close ();
-
-			}
-
-			filechooser.Destroy ();
-
-
-		}
 
 
 		public void EliminarDatosTreeView(Gtk.TreeView treeV){

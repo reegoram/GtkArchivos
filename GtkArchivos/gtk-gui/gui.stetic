@@ -434,8 +434,7 @@
                                   <widget class="Gtk.Button" id="btnGuardar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:gtk-save Button</property>
+                                    <property name="Type">TextOnly</property>
                                     <property name="Label" translatable="yes">Guardar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnGuardarClicked" />
@@ -449,9 +448,8 @@
                                   <widget class="Gtk.Button" id="btnActualizar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:gtk-refresh Button</property>
-                                    <property name="Label" translatable="yes">_Actualizar</property>
+                                    <property name="Type">TextOnly</property>
+                                    <property name="Label" translatable="yes">Actualizar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnActualizarClicked" />
                                   </widget>
@@ -464,9 +462,8 @@
                                   <widget class="Gtk.Button" id="btnEliminar">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:gtk-delete Button</property>
-                                    <property name="Label" translatable="yes">_Eliminar</property>
+                                    <property name="Type">TextOnly</property>
+                                    <property name="Label" translatable="yes">Eliminar</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnEliminarClicked" />
                                   </widget>
@@ -479,9 +476,8 @@
                                   <widget class="Gtk.Button" id="btnSalir">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Type">TextAndIcon</property>
-                                    <property name="Icon">stock:gtk-close Button</property>
-                                    <property name="Label" translatable="yes">_Salir</property>
+                                    <property name="Type">TextOnly</property>
+                                    <property name="Label" translatable="yes">Salir</property>
                                     <property name="UseUnderline">True</property>
                                     <signal name="Clicked" handler="OnBtnSalirClicked" />
                                   </widget>
@@ -530,7 +526,16 @@
               <placeholder />
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="lbPrueba">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">label1</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

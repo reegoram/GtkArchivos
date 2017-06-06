@@ -62,6 +62,8 @@ namespace GtkArchivos
 		
 		private global::Gtk.Label GtkLabelDatos;
 		
+		private global::Gtk.Label lbPrueba;
+		
 		private global::Gtk.VSeparator vseparator1;
 		
 		private global::Gtk.VBox vbox5;
@@ -319,58 +321,46 @@ namespace GtkArchivos
 			this.btnGuardar.Name = "btnGuardar";
 			this.btnGuardar.UseUnderline = true;
 			this.btnGuardar.Label = global::Mono.Unix.Catalog.GetString ("Guardar");
-			global::Gtk.Image w18 = new global::Gtk.Image ();
-			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-save", global::Gtk.IconSize.Button);
-			this.btnGuardar.Image = w18;
 			this.hbox3.Add (this.btnGuardar);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnGuardar]));
-			w19.Position = 0;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnGuardar]));
+			w18.Position = 0;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.btnActualizar = new global::Gtk.Button ();
 			this.btnActualizar.CanFocus = true;
 			this.btnActualizar.Name = "btnActualizar";
 			this.btnActualizar.UseUnderline = true;
-			this.btnActualizar.Label = global::Mono.Unix.Catalog.GetString ("_Actualizar");
-			global::Gtk.Image w20 = new global::Gtk.Image ();
-			w20.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Button);
-			this.btnActualizar.Image = w20;
+			this.btnActualizar.Label = global::Mono.Unix.Catalog.GetString ("Actualizar");
 			this.hbox3.Add (this.btnActualizar);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnActualizar]));
-			w21.Position = 1;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnActualizar]));
+			w19.Position = 1;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.btnEliminar = new global::Gtk.Button ();
 			this.btnEliminar.CanFocus = true;
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.UseUnderline = true;
-			this.btnEliminar.Label = global::Mono.Unix.Catalog.GetString ("_Eliminar");
-			global::Gtk.Image w22 = new global::Gtk.Image ();
-			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Button);
-			this.btnEliminar.Image = w22;
+			this.btnEliminar.Label = global::Mono.Unix.Catalog.GetString ("Eliminar");
 			this.hbox3.Add (this.btnEliminar);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnEliminar]));
-			w23.Position = 2;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnEliminar]));
+			w20.Position = 2;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.btnSalir = new global::Gtk.Button ();
 			this.btnSalir.CanFocus = true;
 			this.btnSalir.Name = "btnSalir";
 			this.btnSalir.UseUnderline = true;
-			this.btnSalir.Label = global::Mono.Unix.Catalog.GetString ("_Salir");
-			global::Gtk.Image w24 = new global::Gtk.Image ();
-			w24.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Button);
-			this.btnSalir.Image = w24;
+			this.btnSalir.Label = global::Mono.Unix.Catalog.GetString ("Salir");
 			this.hbox3.Add (this.btnSalir);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnSalir]));
-			w25.Position = 3;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnSalir]));
+			w21.Position = 3;
 			this.vbox3.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
-			w26.Position = 0;
-			w26.Expand = false;
-			w26.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
+			w22.Position = 0;
+			w22.Expand = false;
+			w22.Fill = false;
 			this.vbox2.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox3]));
-			w27.Position = 2;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox3]));
+			w23.Position = 2;
+			w23.Expand = false;
+			w23.Fill = false;
 			this.GtkAlignment.Add (this.vbox2);
 			this.frameDatos.Add (this.GtkAlignment);
 			this.GtkLabelDatos = new global::Gtk.Label ();
@@ -379,21 +369,30 @@ namespace GtkArchivos
 			this.GtkLabelDatos.UseMarkup = true;
 			this.frameDatos.LabelWidget = this.GtkLabelDatos;
 			this.vbox1.Add (this.frameDatos);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameDatos]));
-			w30.Position = 0;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameDatos]));
+			w26.Position = 0;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.lbPrueba = new global::Gtk.Label ();
+			this.lbPrueba.Name = "lbPrueba";
+			this.lbPrueba.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
+			this.vbox1.Add (this.lbPrueba);
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lbPrueba]));
+			w27.Position = 2;
+			w27.Expand = false;
+			w27.Fill = false;
 			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-			w31.Position = 0;
-			w31.Expand = false;
-			w31.Fill = false;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+			w28.Position = 0;
+			w28.Expand = false;
+			w28.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.vseparator1 = new global::Gtk.VSeparator ();
 			this.vseparator1.Name = "vseparator1";
 			this.hbox1.Add (this.vseparator1);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vseparator1]));
-			w32.Position = 1;
-			w32.Expand = false;
-			w32.Fill = false;
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vseparator1]));
+			w29.Position = 1;
+			w29.Expand = false;
+			w29.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.vbox5 = new global::Gtk.VBox ();
 			this.vbox5.Name = "vbox5";
@@ -403,33 +402,33 @@ namespace GtkArchivos
 			this.hseparator4 = new global::Gtk.HSeparator ();
 			this.hseparator4.Name = "hseparator4";
 			this.vbox5.Add (this.hseparator4);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hseparator4]));
-			w33.Position = 0;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hseparator4]));
+			w30.Position = 0;
+			w30.Expand = false;
+			w30.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
 			this.imgVisual = new global::Gtk.Image ();
 			this.imgVisual.WidthRequest = 150;
 			this.imgVisual.HeightRequest = 165;
 			this.imgVisual.Name = "imgVisual";
 			this.vbox5.Add (this.imgVisual);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.imgVisual]));
-			w34.Position = 1;
-			w34.Expand = false;
-			w34.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.imgVisual]));
+			w31.Position = 1;
+			w31.Expand = false;
+			w31.Fill = false;
 			this.hbox1.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox5]));
-			w35.Position = 2;
-			w35.Expand = false;
-			w35.Fill = false;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox5]));
+			w32.Position = 2;
+			w32.Expand = false;
+			w32.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.vseparator3 = new global::Gtk.VSeparator ();
 			this.vseparator3.Name = "vseparator3";
 			this.hbox1.Add (this.vseparator3);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vseparator3]));
-			w36.Position = 3;
-			w36.Expand = false;
-			w36.Fill = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vseparator3]));
+			w33.Position = 3;
+			w33.Expand = false;
+			w33.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.frameVisual = new global::Gtk.Frame ();
 			this.frameVisual.Name = "frameVisual";
@@ -455,8 +454,8 @@ namespace GtkArchivos
 			this.GtkLabelVerDatos.UseMarkup = true;
 			this.frameVisual.LabelWidget = this.GtkLabelVerDatos;
 			this.hbox1.Add (this.frameVisual);
-			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.frameVisual]));
-			w40.Position = 4;
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.frameVisual]));
+			w37.Position = 4;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
