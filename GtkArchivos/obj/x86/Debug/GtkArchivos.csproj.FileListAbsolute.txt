@@ -1,0 +1,17 @@
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\GtkArchivos.exe
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\GtkArchivos.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\atk-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\gdk-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\glade-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\glib-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\gtk-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\Mono.Posix.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\pango-sharp.dll
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\gdk-sharp.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\glib-sharp.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\glade-sharp.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\pango-sharp.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\atk-sharp.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.csprojResolveAssemblyReference.cache
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.exe
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.pdb

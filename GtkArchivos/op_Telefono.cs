@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Gtk;
@@ -12,118 +13,143 @@ namespace GtkArchivos
 		BinaryWriter bw;
 		//BinaryReader br;
 
+		string ruta = @"telefono.dat";  /* Ruta Linux(root) */
+
+		public int id { get; set; }
 		public string nombre { get; set; }
 		public string marca { get; set; }
 		public string modelo { get; set; }
-		public string compania { get; set;}
+		public string compania { get; set; }
+		public System.Drawing.Image imagen_telefono { get; set; }
 
-		public op_Telefono (string ruta)
+		public string InsertarDatos()
 		{
-			fs = new FileStream (ruta, FileMode.Append, FileAccess.Write);
-			fs.Close ();
-
-
-		}
-
-
-		public string InsertarDatos(string ruta, int ID, string nombre, string marca, string modelo, string compania){
-			try {
-				fs = new FileStream(ruta, FileMode.Append, FileAccess.Write, FileShare.None);
+			try
+			{
+				fs = new FileStream(this.ruta, FileMode.Append, FileAccess.Write, FileShare.None);
 				bw = new BinaryWriter(fs);
 
-				bw.Write(ID.ToString());
-				bw.Write(nombre.ToString());
-				bw.Write(marca.ToString());
-				bw.Write(modelo.ToString());
-				bw.Write(compania.ToString());
+				bw.Write(this.id.ToString() + "\n");
+				bw.Write(this.nombre + "\n");
+				bw.Write(this.marca + "\n");
+				bw.Write(this.modelo + "\n");
+				bw.Write(this.compania + "\n");
+				bw.Write(CodificarImagen(this.imagen_telefono) + "\n");
+				bw.Write("\n");
 
 				fs.Close();
 				bw.Close();
-
-
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				return ex.Message;
 			}
 			return "Guardado";
-
-
 		}
 
-		public string LeerDatos (string ruta){
-			try {
+		public string CodificarImagen(System.Drawing.Image imagen)
+		{
+			string imagenCodificada = string.Empty;
+			using (MemoryStream ms = new MemoryStream())
+			{
+				imagen.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+				imagenCodificada = Convert.ToBase64String(ms.ToArray());
+			}
+			return imagenCodificada;
+		}
 
+		public System.Drawing.Image DescodificarImagen(string imagenCodificada)
+		{
+			byte[] imagen_array = Convert.FromBase64String(imagenCodificada);
+			System.Drawing.Image imagen;
+			using (MemoryStream ms = new MemoryStream(imagen_array, 0, imagen_array.Length))
+			{
+				ms.Write(imagen_array, 0, imagen_array.Length);
+				imagen = System.Drawing.Image.FromStream(ms);
+			}
+			return imagen;
+		}
 
-			} catch (Exception ex) {
+		public string LeerDatos(string ruta)
+		{
+			try
+			{
+
+			}
+			catch (Exception ex)
+			{
 				return ex.Message;
 			}
 			return "Leido";
 		}
 
 
-		public ListStore GenerarTreeView(Gtk.TreeView tree, ListStore ls){
+		public ListStore GenerarTreeView(Gtk.TreeView tree, ListStore ls)
+		{
 			TreeViewColumn colID = new TreeViewColumn();
 			colID.Title = "ID";
-			TreeViewColumn colNombre = new TreeViewColumn ();
+			TreeViewColumn colNombre = new TreeViewColumn();
 			colNombre.Title = "Nombre";
-			TreeViewColumn colMarca = new TreeViewColumn ();
+			TreeViewColumn colMarca = new TreeViewColumn();
 			colMarca.Title = "Marca";
-			TreeViewColumn colModelo = new TreeViewColumn ();
+			TreeViewColumn colModelo = new TreeViewColumn();
 			colModelo.Title = "Modelo";
-			TreeViewColumn colCompania = new TreeViewColumn ();
+			TreeViewColumn colCompania = new TreeViewColumn();
 			colCompania.Title = "Compañia";
 
-			tree.AppendColumn (colID);
-			tree.AppendColumn (colNombre);
-			tree.AppendColumn (colMarca);
-			tree.AppendColumn (colModelo);
-			tree.AppendColumn (colCompania);
+			tree.AppendColumn(colID);
+			tree.AppendColumn(colNombre);
+			tree.AppendColumn(colMarca);
+			tree.AppendColumn(colModelo);
+			tree.AppendColumn(colCompania);
 
-			ls = new Gtk.ListStore (typeof(string), typeof(string), typeof(string), typeof(string), typeof(string));
+			ls = new Gtk.ListStore(typeof(string), typeof(string), typeof(string), typeof(string), typeof(string));
 
 			tree.Model = ls;
 
 			CellRendererText celID = new CellRendererText();
-			colID.PackStart (celID, true);
-			CellRendererText celNombre = new CellRendererText ();
-			colNombre.PackStart (celNombre, true);
-			CellRendererText celMarca = new CellRendererText ();
-			colMarca.PackStart (celMarca, true);
-			CellRendererText celModelo = new CellRendererText ();
-			colModelo.PackStart (celModelo, true);
-			CellRendererText celCompania = new CellRendererText ();
-			colCompania.PackStart (celCompania, true);
+			colID.PackStart(celID, true);
+			CellRendererText celNombre = new CellRendererText();
+			colNombre.PackStart(celNombre, true);
+			CellRendererText celMarca = new CellRendererText();
+			colMarca.PackStart(celMarca, true);
+			CellRendererText celModelo = new CellRendererText();
+			colModelo.PackStart(celModelo, true);
+			CellRendererText celCompania = new CellRendererText();
+			colCompania.PackStart(celCompania, true);
 
-			colID.AddAttribute (celID, "text", 0);
-			colNombre.AddAttribute (celNombre, "text", 1);
-			colMarca.AddAttribute (celMarca, "text", 2);
-			colModelo.AddAttribute (celModelo, "text", 3);
-			colCompania.AddAttribute (celCompania, "text", 4);
+			colID.AddAttribute(celID, "text", 0);
+			colNombre.AddAttribute(celNombre, "text", 1);
+			colMarca.AddAttribute(celMarca, "text", 2);
+			colModelo.AddAttribute(celModelo, "text", 3);
+			colCompania.AddAttribute(celCompania, "text", 4);
 
 			return ls;
 		}
 
-		public void Filtro(FileChooserDialog fChooser){
-			FileFilter filter = new FileFilter ();
-			filter.Name = "Archivo de Imágen (*.jpg, *.jpeg, *.png)";
-			filter.AddPattern ("*.jpg");
-			filter.AddPattern ("*.jpeg");
-			filter.AddPattern ("*.png");
-			fChooser.AddFilter (filter);
-
+		public void Filtro(FileChooserDialog fChooser)
+		{
+			FileFilter filter = new FileFilter();
+			filter.Name = "Archivo de Imágen (*.png)";
+			filter.AddPattern("*.png");
+			fChooser.AddFilter(filter);
 		}
 
 
-		public void ValidarEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5){
-			if (ent1.Text == string.Empty || ent2.Text == string.Empty || ent3.Text == string.Empty 
-				|| ent4.Text == string.Empty || ent5.Text == string.Empty) {
+		public void ValidarEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5)
+		{
+			if (ent1.Text == string.Empty || ent2.Text == string.Empty || ent3.Text == string.Empty
+				|| ent4.Text == string.Empty || ent5.Text == string.Empty)
+			{
 				MessageBox.Show("Es necesario rellenar todo el formulario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
-			ResetEntry (ent1, ent2, ent3, ent4, ent5);
+			ResetEntry(ent1, ent2, ent3, ent4, ent5);
 
 		}
 
-		public void ResetEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5){
+		public void ResetEntry(Entry ent1, Entry ent2, Entry ent3, Entry ent4, Entry ent5)
+		{
 			ent1.Text = string.Empty;
 			ent2.Text = string.Empty;
 			ent3.Text = string.Empty;
@@ -131,35 +157,30 @@ namespace GtkArchivos
 			ent5.Text = string.Empty;
 		}
 
-		public void SeleccionarImagen(Image imgV, Window win){
-			FileChooserDialog filechooser = new Gtk.FileChooserDialog ("Seleccionar imágen", win ,FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
+		public void SeleccionarImagen(Gtk.Image imgV, Window win)
+		{
+			FileChooserDialog filechooser = new Gtk.FileChooserDialog("Seleccionar imágen", win, FileChooserAction.Open, "Cancelar", ResponseType.Cancel, "Abrir", ResponseType.Accept);
 
-			Filtro (filechooser);
+			Filtro(filechooser);
 
-			if (filechooser.Run () == (int)ResponseType.Accept) {
-
-				FileStream file = File.OpenRead (filechooser.Filename);
-				imgV.Pixbuf = new Gdk.Pixbuf (file, 150, 165);
-				imgV.Pixbuf.ScaleSimple (imgV.Pixbuf.Width, imgV.Pixbuf.Height, 0);
-				file.Close ();
-
+			if (filechooser.Run() == (int)ResponseType.Accept)
+			{
+				FileStream file = File.OpenRead(filechooser.Filename);
+				imgV.Pixbuf = new Gdk.Pixbuf(file, 150, 165);
+				imgV.Pixbuf.ScaleSimple(imgV.Pixbuf.Width, imgV.Pixbuf.Height, 0);
+				file.Close();
 			}
 
-			filechooser.Destroy ();
+			try
+			{
+				this.imagen_telefono = System.Drawing.Image.FromFile(filechooser.Filename);
+			}
+			catch (Exception e)
+			{
+				System.Diagnostics.Debug.Write(e);
+			}
 
-
+			filechooser.Destroy();
 		}
-
-
-
-
-
-
-
-
-
-
-
 	}
 }
-
