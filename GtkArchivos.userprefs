@@ -1,24 +1,23 @@
-﻿<Properties StartupItem="GtkArchivos/GtkArchivos.csproj">
+﻿<Properties StartupConfiguration="{5D3D9C82-7FFB-4591-8463-F8CBD19ED63B}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos/op_Telefono.cs">
-    <Files>
-      <File FileName="GtkArchivos/Win_Telefono.cs" Line="15" Column="16" />
-      <File FileName="GtkArchivos/op_Telefono.cs" Line="60" Column="5" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GtkArchivos" expanded="True">
-            <Node name="GtkArchivos" expanded="True">
-              <Node name="op_Telefono.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\Win_Telefono.cs" relfile="GtkArchivos\Win_Telefono.cs" line="37" column="5" />
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\op_Telefono.cs" relfile="GtkArchivos\op_Telefono.cs" line="45" column="1" />
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\Win_Telefono.cs" relfile="GtkArchivos\Win_Telefono.cs" line="62" column="5" />
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\Win_Telefono.cs" relfile="GtkArchivos\Win_Telefono.cs" line="36" column="1" />
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\op_Telefono.cs" relfile="GtkArchivos\op_Telefono.cs" line="180" column="5" />
+      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\op_Telefono.cs" relfile="GtkArchivos\op_Telefono.cs" line="181" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.GtkArchivos PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos\op_Telefono.cs">
+    <Files>
+      <File FileName="GtkArchivos\Win_Telefono.cs" Line="86" Column="4" />
+      <File FileName="GtkArchivos\op_Telefono.cs" Line="176" Column="9" />
+      <File FileName="GtkArchivos\Program.cs" Line="13" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
 </Properties>
