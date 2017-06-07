@@ -27,16 +27,19 @@ namespace GtkArchivos
 			try
 			{
 				fs = new FileStream(this.ruta, FileMode.Append, FileAccess.Write, FileShare.None);
-				bw = new BinaryWriter(fs);
 
-				bw.Write(this.id.ToString() + "\n");
-				bw.Write(this.nombre + "\n");
-				bw.Write(this.marca + "\n");
-				bw.Write(this.modelo + "\n");
-				bw.Write(this.compania + "\n");
-				bw.Write(CodificarImagen(this.imagen_telefono) + "\n");
-				bw.Write("\n");
+				string data = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n\n",
+											this.id.ToString(), this.nombre, this.marca, this.modelo,
+											this.compania, CodificarImagen(this.imagen_telefono));
 
+				using (bw = new BinaryWriter(fs))
+				{
+					char[] arreglo_data = data.ToCharArray();
+					foreach (char i in arreglo_data)
+					{
+						bw.Write(i);
+					}
+				}
 				fs.Close();
 				bw.Close();
 			}
