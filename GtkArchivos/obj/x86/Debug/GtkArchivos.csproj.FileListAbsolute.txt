@@ -1,5 +1,4 @@
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\GtkArchivos.exe
-C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\GtkArchivos.pdb
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\atk-sharp.dll
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\gdk-sharp.dll
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\glade-sharp.dll
@@ -14,3 +13,5 @@ C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Deb
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\atk-sharp.pdb
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.exe
 C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\bin\Debug\GtkArchivos.pdb
+C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\obj\x86\Debug\GtkArchivos.csprojResolveAssemblyReference.cache
