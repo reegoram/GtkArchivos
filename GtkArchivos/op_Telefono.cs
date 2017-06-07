@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Gtk;
@@ -9,11 +9,10 @@ namespace GtkArchivos
 	public class op_Telefono
 	{
 		FileStream fs;
-		//StreamReader sr;
 		BinaryWriter bw;
 		//BinaryReader br;
 
-		string ruta = @"telefono.dat";  /* Ruta Linux(root) */
+		string ruta = @"telefon.dat";  /* Ruta Linux(root) */
 
 		public int id { get; set; }
 		public string nombre { get; set; }
@@ -29,8 +28,8 @@ namespace GtkArchivos
 				fs = new FileStream(this.ruta, FileMode.Append, FileAccess.Write, FileShare.None);
 
 				string data = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n\n",
-											this.id.ToString(), this.nombre, this.marca, this.modelo,
-											this.compania, CodificarImagen(this.imagen_telefono));
+						this.id.ToString(), this.nombre, this.marca, this.modelo,
+						this.compania, CodificarImagen(this.imagen_telefono));
 
 				using (bw = new BinaryWriter(fs))
 				{
@@ -41,7 +40,8 @@ namespace GtkArchivos
 					}
 				}
 				fs.Close();
-				bw.Close();
+				fs.Dispose();
+
 			}
 			catch (Exception ex)
 			{
@@ -49,6 +49,7 @@ namespace GtkArchivos
 			}
 			return "Guardado";
 		}
+
 
 		public string CodificarImagen(System.Drawing.Image imagen)
 		{
@@ -73,17 +74,71 @@ namespace GtkArchivos
 			return imagen;
 		}
 
-		public string LeerDatos(string ruta)
+		public List<op_Telefono> LeerDatos()
 		{
+			List<op_Telefono> lista = new List<op_Telefono>();
+			op_Telefono tel = new op_Telefono();
 			try
 			{
+				using (FileStream fs = new FileStream(this.ruta, FileMode.Open, FileAccess.Read, FileShare.None))
+				{
+					using (BinaryReader br = new BinaryReader(fs))
+					{
+						int pos = 0;
+						int attr = 0;
+						int length = (int)br.BaseStream.Length;
+						string temp = string.Empty;
+						while (pos < length)
+						{
+							char c = br.ReadChar();
+							if (c != '\n')
+							{
+								temp += c;
+							}
+							else
+							{
+								//Aquí desenmaraño lo que tiene el telefon.dat
+								switch (++attr)
+								{
+									case 1: //id
+										tel.id = int.Parse(temp);
+										break;
+									case 2: //nombre
+										tel.nombre = temp;
+										break;
+									case 3: //marca
+										tel.marca = temp;
+										break;
+									case 4: //modelo
+										tel.modelo = temp;
+										break;
+									case 5: //compañia
+										tel.compania = temp;
+										break;
+									case 6: //imagen
+										tel.imagen_telefono = DescodificarImagen(temp);
+										break;
+									case 7: //reset
+										lista.Add(tel);
+										tel = new op_Telefono();
+										attr = 0;
+										break;
+								}
+								temp = string.Empty;
+							}
+							pos += sizeof(char);
+						}
+					}
+				}
 
 			}
 			catch (Exception ex)
 			{
-				return ex.Message;
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
 			}
-			return "Leido";
+
+			return lista;
 		}
 
 

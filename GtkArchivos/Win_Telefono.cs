@@ -17,7 +17,7 @@ namespace GtkArchivos
 			this.Build();
 
 			Telefono = new op_Telefono();
-			//Telefono.LeerDatos (ruta, entryID);
+			Telefono.LeerDatos();
 			DataTel = Telefono.GenerarTreeView(tvVerDatos, DataTel);
 
 		}
