@@ -50,6 +50,20 @@ namespace GtkArchivos
 			return "Guardado";
 		}
 
+		public string EliminarDatos() { 
+			try
+			{
+				if (File.Exists(ruta))
+					File.Delete(ruta);
+				else if (!File.Exists(ruta))
+					return "No Existe";
+			}
+			catch (Exception ex)
+			{
+				return ex.Message;
+			}
+			return "Eliminado";
+		}
 
 		public string CodificarImagen(System.Drawing.Image imagen)
 		{
@@ -241,5 +255,6 @@ namespace GtkArchivos
 
 			filechooser.Destroy();
 		}
+
 	}
 }
