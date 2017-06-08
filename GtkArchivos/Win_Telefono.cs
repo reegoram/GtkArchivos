@@ -19,6 +19,7 @@ namespace GtkArchivos
 			telefonos = Telefono.LeerDatos();
 			lsDataTel = Telefono.GenerarTreeView(tvVerDatos, lsDataTel);
 			RevisarLista();
+			Mostrar_imagen(telefonos[0].id);
 		}
 
 		void RevisarLista()
@@ -29,18 +30,24 @@ namespace GtkArchivos
 				for (int i = 0; i < telefonos.Count; i++)
 				{
 					//Agregas los valores al datagridview ** Ok/2
-						lsDataTel.AppendValues(telefonos[0].id.ToString(), telefonos[0].nombre.ToString(), 
-					                           telefonos[0].marca.ToString(), telefonos[0].modelo.ToString(), telefonos[0].compania.ToString());
+					lsDataTel.AppendValues(telefonos[i].id.ToString(), telefonos[i].nombre.ToString(), 
+					                           telefonos[i].marca.ToString(), telefonos[i].modelo.ToString(), telefonos[i].compania.ToString());
 				}
 			}
 		}
 
 		//Cuando se dé clic en el datagridview 
 		//TODO: Agregar el método manejador que escuche el clic en el datagridview
-		void Mostrar_imagen(int id)
+		void Mostrar_imagen(int id_en_lista)
 		{
-			// Buscar el telefono del id en la lista
-			//imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[id_en_lista].imagen_telefono));
+			if (telefonos != null)
+			{
+				// Llenar el dgv desde la lista
+				for (int i = 0; i<telefonos.Count; i++)
+				{
+					imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[i].imagen_telefono), 150, 165);
+				}
+			}
 		}
 
 		protected void OnBtnGuardarClicked(object sender, EventArgs e)
@@ -60,21 +67,17 @@ namespace GtkArchivos
 				else
 					MessageBox.Show("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-				/*string y = Telefono.LeerDatos();
+				string y = Telefono.LeerDatos();
 				if (y == "Leido")
 				{
-					//DataTel.AppendValues(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadString(), br.ReadString());
-
 					/* Agregando Datos al Modelo */
-				//DataTel.AppendValues(id.ToString(), nombre.ToString(), marca.ToString(), modelo.ToString(), compania.ToString());
-
-				/*}
+					lsDataTel.AppendValues(this.Telefono.id.ToString(), this.Telefono.nombre.ToString(), this.Telefono.marca.ToString(), 
+					                     this.Telefono.ToString(), this.Telefono.compania.ToString());
+				}
 				else
 				{
 					MessageBox.Show("No Leido");
 				}
-
-				*/
 				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 
 			}
@@ -110,6 +113,7 @@ namespace GtkArchivos
 		{
 			Telefono.SeleccionarImagen(imgVisual, this);
 		}
+
 	}
 }
 
