@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing;
-using Gtk;
 
 namespace GtkArchivos
 {
@@ -10,6 +8,7 @@ namespace GtkArchivos
 	{
 		op_Telefono Telefono;
 		Gtk.ListStore DataTel;
+		List<op_Telefono> telefonos;
 
 		public Win_Telefono() :
 			base(Gtk.WindowType.Toplevel)
@@ -17,9 +16,29 @@ namespace GtkArchivos
 			this.Build();
 
 			Telefono = new op_Telefono();
-			Telefono.LeerDatos();
+			telefonos = Telefono.LeerDatos();
 			DataTel = Telefono.GenerarTreeView(tvVerDatos, DataTel);
+			RevisarLista();
+		}
 
+		void RevisarLista()
+		{
+			if (telefonos != null)
+			{
+				// Llenar el dgv desde la lista
+				for (int i = 0; i < telefonos.Count; i++)
+				{
+					//Agregas los valores al datagridview
+				}
+			}
+		}
+
+		//Cuando se dé clic en el datagridview 
+		//TODO: Agregar el método manejador que escuche el clic en el datagridview
+		void Mostrar_imagen(int id)
+		{
+			// Buscar el telefono del id en la lista
+			//imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[id_en_lista].imagen_telefono));
 		}
 
 		protected void OnBtnGuardarClicked(object sender, EventArgs e)
