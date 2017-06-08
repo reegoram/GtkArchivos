@@ -12,7 +12,7 @@ namespace GtkArchivos
 		BinaryWriter bw;
 		//BinaryReader br;
 
-		string ruta = @"telefon.dat";  /* Ruta Linux(root) */
+		string ruta = @"telefono.dat";  /* Ruta Linux(root) */
 
 		public int id { get; set; }
 		public string nombre { get; set; }
@@ -27,7 +27,7 @@ namespace GtkArchivos
 			{
 				fs = new FileStream(this.ruta, FileMode.Append, FileAccess.Write, FileShare.None);
 
-				string data = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n\n",
+				string data = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n",
 						this.id.ToString(), this.nombre, this.marca, this.modelo,
 						this.compania, CodificarImagen(this.imagen_telefono));
 
@@ -50,7 +50,8 @@ namespace GtkArchivos
 			return "Guardado";
 		}
 
-		public string EliminarDatos() { 
+		public string EliminarDatos()
+		{
 			try
 			{
 				if (File.Exists(ruta))
@@ -74,6 +75,19 @@ namespace GtkArchivos
 				imagenCodificada = Convert.ToBase64String(ms.ToArray());
 			}
 			return imagenCodificada;
+		}
+
+		public byte[] Imagen(System.Drawing.Image imagen)
+		{
+			byte[] imagen_array;
+
+			using (MemoryStream ms = new MemoryStream())
+			{
+				imagen.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+				imagen_array = ms.ToArray();
+			}
+
+			return imagen_array;
 		}
 
 		public System.Drawing.Image DescodificarImagen(string imagenCodificada)
@@ -105,13 +119,11 @@ namespace GtkArchivos
 						while (pos < length)
 						{
 							char c = br.ReadChar();
-							if (c != '\n')
+							temp += c;
+
+							if (c == '\n')
 							{
-								temp += c;
-							}
-							else
-							{
-								//Aquí desenmaraño lo que tiene el telefon.dat
+								temp = temp.Substring(0, temp.Length - 1);
 								switch (++attr)
 								{
 									case 1: //id
@@ -131,20 +143,16 @@ namespace GtkArchivos
 										break;
 									case 6: //imagen
 										tel.imagen_telefono = DescodificarImagen(temp);
-										break;
-									case 7: //reset
 										lista.Add(tel);
-										tel = new op_Telefono();
 										attr = 0;
 										break;
 								}
 								temp = string.Empty;
 							}
-							pos += sizeof(char);
+							pos++;
 						}
 					}
 				}
-
 			}
 			catch (Exception ex)
 			{
