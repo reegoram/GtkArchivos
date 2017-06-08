@@ -19,7 +19,6 @@ namespace GtkArchivos
 			telefonos = Telefono.LeerDatos();
 			lsDataTel = Telefono.GenerarTreeView(tvVerDatos, lsDataTel);
 			RevisarLista();
-			//Mostrar_imagen(telefonos[0].id);
 		}
 
 		void RevisarLista()
@@ -30,23 +29,17 @@ namespace GtkArchivos
 				for (int i = 0; i < telefonos.Count; i++)
 				{
 					//Agregas los valores al datagridview ** Ok/2
-					lsDataTel.AppendValues(telefonos[i].id.ToString(), telefonos[i].nombre.ToString(), 
-					                           telefonos[i].marca.ToString(), telefonos[i].modelo.ToString(), telefonos[i].compania.ToString());
+					lsDataTel.AppendValues(telefonos[i].id.ToString(), telefonos[i].nombre.ToString(),
+											   telefonos[i].marca.ToString(), telefonos[i].modelo.ToString(), telefonos[i].compania.ToString());
 				}
 			}
 		}
 
-		//Cuando se dé clic en el datagridview 
-		//TODO: Agregar el método manejador que escuche el clic en el datagridview
 		void Mostrar_imagen(int id_en_lista)
 		{
 			if (telefonos != null)
 			{
-				// Llenar el dgv desde la lista
-				for (int i = 0; i<telefonos.Count; i++)
-				{
-					imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[i].imagen_telefono), 150, 165);
-				}
+				imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[id_en_lista].imagen_telefono), 150, 165);
 			}
 		}
 
@@ -54,12 +47,18 @@ namespace GtkArchivos
 		{
 			try
 			{
-
 				Telefono.id = int.Parse(entryID.Text);
 				Telefono.nombre = entryNombre.Text;
 				Telefono.marca = entryMarca.Text;
 				Telefono.modelo = entryModelo.Text;
 				Telefono.compania = entryCompania.Text;
+
+				if (IndexEnLista(Telefono.id) > -1)
+				{
+					MessageBox.Show("El ID ya existe");
+					return;
+				}
+
 
 				string d = Telefono.InsertarDatos();
 				if (d == "Guardado")
@@ -68,12 +67,13 @@ namespace GtkArchivos
 					/* Agregando Datos al Modelo */
 					lsDataTel.AppendValues(this.Telefono.id.ToString(), this.Telefono.nombre.ToString(), this.Telefono.marca.ToString(),
 										   this.Telefono.modelo.ToString(), this.Telefono.compania.ToString());
+					telefonos.Add(Telefono);
 				}
 				else
 				{
 					MessageBox.Show("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
-				
+
 				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 
 			}
@@ -121,7 +121,22 @@ namespace GtkArchivos
 				entryMarca.Text = tvVerDatos.Model.GetValue(iter, 2).ToString();
 				entryModelo.Text = tvVerDatos.Model.GetValue(iter, 3).ToString();
 				entryCompania.Text = tvVerDatos.Model.GetValue(iter, 4).ToString();
+				Mostrar_imagen(IndexEnLista(int.Parse(tvVerDatos.Model.GetValue(iter, 0).ToString())));
 			}
+		}
+
+		int IndexEnLista(int id)
+		{
+			int index = -1;
+			foreach (op_Telefono i in telefonos)
+			{
+				index++;
+				if (i.id == id)
+				{
+					return index;
+				}
+			}
+			return -1;
 		}
 	}
 }
