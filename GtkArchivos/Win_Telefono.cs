@@ -73,7 +73,13 @@ namespace GtkArchivos
 
 		protected void OnBtnEliminarClicked(object sender, EventArgs e)
 		{
-
+			string m = Telefono.EliminarDatos();
+			if (m == "Eliminado")
+				MessageBox.Show("El Archivo ha sido Eliminado", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			else if (m == "No Existe")
+				MessageBox.Show("El Archivo No Existe", "No Esiste", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			else
+				MessageBox.Show("ERROR: Archivo no eliminado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		protected void OnBtnSalirClicked(object sender, EventArgs e)
@@ -84,12 +90,6 @@ namespace GtkArchivos
 		protected void OnBtnSelecImagenClicked(object sender, EventArgs e)
 		{
 			Telefono.SeleccionarImagen(imgVisual, this);
-		}
-
-		/*** FUNCIONES ***/
-		public void EliminarDatosTreeView(Gtk.TreeView treeV)
-		{
-
 		}
 	}
 }
