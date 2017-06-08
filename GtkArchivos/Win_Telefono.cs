@@ -19,7 +19,7 @@ namespace GtkArchivos
 			telefonos = Telefono.LeerDatos();
 			lsDataTel = Telefono.GenerarTreeView(tvVerDatos, lsDataTel);
 			RevisarLista();
-			Mostrar_imagen(telefonos[0].id);
+			//Mostrar_imagen(telefonos[0].id);
 		}
 
 		void RevisarLista()
@@ -63,21 +63,17 @@ namespace GtkArchivos
 
 				string d = Telefono.InsertarDatos();
 				if (d == "Guardado")
+				{
 					MessageBox.Show("Datos Guardados Exitosamente", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				else
-					MessageBox.Show("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-				string y = Telefono.LeerDatos();
-				if (y == "Leido")
-				{
 					/* Agregando Datos al Modelo */
-					lsDataTel.AppendValues(this.Telefono.id.ToString(), this.Telefono.nombre.ToString(), this.Telefono.marca.ToString(), 
-					                     this.Telefono.ToString(), this.Telefono.compania.ToString());
+					lsDataTel.AppendValues(this.Telefono.id.ToString(), this.Telefono.nombre.ToString(), this.Telefono.marca.ToString(),
+										   this.Telefono.modelo.ToString(), this.Telefono.compania.ToString());
 				}
 				else
 				{
-					MessageBox.Show("No Leido");
+					MessageBox.Show("Error de Guardado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
+				
 				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 
 			}
@@ -114,6 +110,19 @@ namespace GtkArchivos
 			Telefono.SeleccionarImagen(imgVisual, this);
 		}
 
+		protected void OnTvVerDatosButtonReleaseEvent(object o, Gtk.ButtonReleaseEventArgs args)
+		{
+			Gtk.TreeIter iter;
+			if (tvVerDatos.Selection.CountSelectedRows() > 0)
+			{
+				tvVerDatos.Model.GetIter(out iter, tvVerDatos.Selection.GetSelectedRows()[0]);
+				entryID.Text = tvVerDatos.Model.GetValue(iter, 0).ToString();
+				entryNombre.Text = tvVerDatos.Model.GetValue(iter, 1).ToString();
+				entryMarca.Text = tvVerDatos.Model.GetValue(iter, 2).ToString();
+				entryModelo.Text = tvVerDatos.Model.GetValue(iter, 3).ToString();
+				entryCompania.Text = tvVerDatos.Model.GetValue(iter, 4).ToString();
+			}
+		}
 	}
 }
 

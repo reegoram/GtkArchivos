@@ -626,6 +626,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>
+                        <signal name="ButtonReleaseEvent" handler="OnTvVerDatosButtonReleaseEvent" />
                       </widget>
                     </child>
                   </widget>

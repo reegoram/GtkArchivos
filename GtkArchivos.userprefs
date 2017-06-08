@@ -8,8 +8,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos\Win_Telefono.cs">
     <Files>
       <File FileName="GtkArchivos\Program.cs" Line="13" Column="1" />
-      <File FileName="GtkArchivos\op_Telefono.cs" Line="75" Column="61" />
-      <File FileName="GtkArchivos\Win_Telefono.cs" Line="70" Column="32" />
+      <File FileName="GtkArchivos\op_Telefono.cs" Line="51" Column="4" />
+      <File FileName="GtkArchivos\Win_Telefono.cs" Line="28" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />

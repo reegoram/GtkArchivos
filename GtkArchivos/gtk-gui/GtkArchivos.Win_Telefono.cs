@@ -469,6 +469,7 @@ namespace GtkArchivos
 			this.btnActualizar.Clicked += new global::System.EventHandler(this.OnBtnActualizarClicked);
 			this.btnEliminar.Clicked += new global::System.EventHandler(this.OnBtnEliminarClicked);
 			this.btnSalir.Clicked += new global::System.EventHandler(this.OnBtnSalirClicked);
+			this.tvVerDatos.ButtonReleaseEvent += new global::Gtk.ButtonReleaseEventHandler(this.OnTvVerDatosButtonReleaseEvent);
 		}
 	}
 }
