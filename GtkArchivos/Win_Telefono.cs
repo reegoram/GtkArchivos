@@ -7,7 +7,7 @@ namespace GtkArchivos
 	public partial class Win_Telefono : Gtk.Window
 	{
 		op_Telefono Telefono;
-		Gtk.ListStore DataTel;
+		Gtk.ListStore lsDataTel;
 		List<op_Telefono> telefonos;
 
 		public Win_Telefono() :
@@ -17,7 +17,7 @@ namespace GtkArchivos
 
 			Telefono = new op_Telefono();
 			telefonos = Telefono.LeerDatos();
-			DataTel = Telefono.GenerarTreeView(tvVerDatos, DataTel);
+			lsDataTel = Telefono.GenerarTreeView(tvVerDatos, lsDataTel);
 			RevisarLista();
 		}
 
@@ -28,7 +28,9 @@ namespace GtkArchivos
 				// Llenar el dgv desde la lista
 				for (int i = 0; i < telefonos.Count; i++)
 				{
-					//Agregas los valores al datagridview
+					//Agregas los valores al datagridview ** Ok/2
+						lsDataTel.AppendValues(telefonos[0].id.ToString(), telefonos[0].nombre.ToString(), 
+					                           telefonos[0].marca.ToString(), telefonos[0].modelo.ToString(), telefonos[0].compania.ToString());
 				}
 			}
 		}
@@ -81,8 +83,6 @@ namespace GtkArchivos
 				Telefono.ValidarEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 			}
-
-
 		}
 
 		protected void OnBtnActualizarClicked(object sender, EventArgs e)
