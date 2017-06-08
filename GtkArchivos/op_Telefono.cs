@@ -12,7 +12,7 @@ namespace GtkArchivos
 		BinaryWriter bw;
 		//BinaryReader br;
 
-		string ruta = @"telefon.dat";  /* Ruta Linux(root) */
+		string ruta = @"telefono.dat";  /* Ruta Linux(root) */
 
 		public int id { get; set; }
 		public string nombre { get; set; }
@@ -86,6 +86,7 @@ namespace GtkArchivos
 					{
 						int pos = 0;
 						int attr = 0;
+						char last;
 						int length = (int)br.BaseStream.Length;
 						string temp = string.Empty;
 						while (pos < length)
