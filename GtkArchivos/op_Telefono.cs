@@ -144,6 +144,7 @@ namespace GtkArchivos
 									case 6: //imagen
 										tel.imagen_telefono = DescodificarImagen(temp);
 										lista.Add(tel);
+										tel = new op_Telefono();
 										attr = 0;
 										break;
 								}
