@@ -59,6 +59,10 @@ namespace GtkArchivos
 					return;
 				}
 
+				if (Telefono.imagen_telefono == null) {
+					Telefono.SeleccionarImagen(imgVisual, this);
+					return;
+				}
 
 				string d = Telefono.InsertarDatos();
 				if (d == "Guardado")
@@ -86,7 +90,26 @@ namespace GtkArchivos
 
 		protected void OnBtnActualizarClicked(object sender, EventArgs e)
 		{
+			int _id = int.Parse(entryID.Text);
+			string _nombre = entryNombre.Text;
+			string _marca = entryMarca.Text;
+			string _modelo = entryModelo.Text;
+			string _compania = entryCompania.Text;
 
+			lsDataTel.Clear();
+			_id = IndexEnLista(_id);
+			op_Telefono o = telefonos[_id];
+			o.nombre = _nombre;
+			o.marca = _marca;
+			o.modelo = _modelo;
+			o.compania = _compania;
+			RevisarLista();
+			Telefono.EliminarDatos();
+			
+			foreach (op_Telefono i in telefonos)
+			{
+				i.InsertarDatos();
+			}
 		}
 
 		protected void OnBtnEliminarClicked(object sender, EventArgs e)

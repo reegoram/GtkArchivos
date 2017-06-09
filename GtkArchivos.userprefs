@@ -3,15 +3,15 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\reego\Documents\ing_inf\des_cod_abierto\GtkArchivos\GtkArchivos\op_Telefono.cs" relfile="GtkArchivos\op_Telefono.cs" line="48" column="5" />
+      <Breakpoint file="C:\Users\gdiaz\Documents\Projects\GtkArchivos\GtkArchivos\op_Telefono.cs" relfile="GtkArchivos\op_Telefono.cs" line="48" column="5" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.GtkArchivos PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos\op_Telefono.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GtkArchivos\Win_Telefono.cs">
     <Files>
       <File FileName="GtkArchivos\Program.cs" Line="13" Column="1" />
       <File FileName="GtkArchivos\op_Telefono.cs" Line="48" Column="1" />
-      <File FileName="GtkArchivos\Win_Telefono.cs" Line="70" Column="30" />
+      <File FileName="GtkArchivos\Win_Telefono.cs" Line="53" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />
