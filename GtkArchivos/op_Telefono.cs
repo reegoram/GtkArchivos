@@ -260,8 +260,11 @@ namespace GtkArchivos
 			{
 				System.Diagnostics.Debug.Write(e);
 			}
+			finally
+			{
+				filechooser.Destroy();
+			}
 
-			filechooser.Destroy();
 		}
 
 	}

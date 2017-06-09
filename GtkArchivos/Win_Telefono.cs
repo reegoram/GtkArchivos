@@ -39,7 +39,7 @@ namespace GtkArchivos
 		{
 			if (telefonos != null)
 			{
-				imgVisual.Pixbuf = new Gdk.Pixbuf(Telefono.Imagen(telefonos[id_en_lista].imagen_telefono), 150, 165);
+				imgVisual.Pixbuf = new Gdk.Pixbuf(new op_Telefono().Imagen(telefonos[id_en_lista].imagen_telefono), 150, 165);
 			}
 		}
 
@@ -47,6 +47,8 @@ namespace GtkArchivos
 		{
 			try
 			{
+				if (Telefono == null) Telefono = new op_Telefono();
+
 				Telefono.id = int.Parse(entryID.Text);
 				Telefono.nombre = entryNombre.Text;
 				Telefono.marca = entryMarca.Text;
@@ -59,7 +61,8 @@ namespace GtkArchivos
 					return;
 				}
 
-				if (Telefono.imagen_telefono == null) {
+				if (Telefono.imagen_telefono == null)
+				{
 					Telefono.SeleccionarImagen(imgVisual, this);
 					return;
 				}
@@ -79,13 +82,15 @@ namespace GtkArchivos
 				}
 
 				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
-
+				Telefono = null;
 			}
 			catch (Exception ex)
 			{
 				Telefono.ValidarEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 			}
+
+			telefonos = new op_Telefono().LeerDatos();
 		}
 
 		protected void OnBtnActualizarClicked(object sender, EventArgs e)
@@ -95,6 +100,7 @@ namespace GtkArchivos
 			string _marca = entryMarca.Text;
 			string _modelo = entryModelo.Text;
 			string _compania = entryCompania.Text;
+			System.Drawing.Image _imagen = (Telefono != null) ? Telefono.imagen_telefono : null;
 
 			lsDataTel.Clear();
 			_id = IndexEnLista(_id);
@@ -103,24 +109,42 @@ namespace GtkArchivos
 			o.marca = _marca;
 			o.modelo = _modelo;
 			o.compania = _compania;
+			o.imagen_telefono = (_imagen != null) ? _imagen : o.imagen_telefono;
 			RevisarLista();
-			Telefono.EliminarDatos();
-			
+			o.EliminarDatos();
+
 			foreach (op_Telefono i in telefonos)
 			{
 				i.InsertarDatos();
 			}
+			Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
 		}
 
 		protected void OnBtnEliminarClicked(object sender, EventArgs e)
 		{
-			string m = Telefono.EliminarDatos();
-			if (m == "Eliminado")
-				MessageBox.Show("El Archivo ha sido Eliminado", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			else if (m == "No Existe")
-				MessageBox.Show("El Archivo No Existe", "No Esiste", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			else
-				MessageBox.Show("ERROR: Archivo no eliminado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			try
+			{
+				int id = int.Parse(entryID.Text);
+				id = IndexEnLista(id);
+				telefonos.RemoveAt(id);
+				if (new op_Telefono().EliminarDatos().ToUpper() != "ELIMINADO")
+				{
+					MessageBox.Show("ERROR: Archivo no eliminado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				lsDataTel.Clear();
+				RevisarLista();
+				foreach (op_Telefono i in telefonos)
+				{
+					i.InsertarDatos();
+				}
+				Telefono.ResetEntry(entryID, entryNombre, entryMarca, entryModelo, entryCompania);
+				MessageBox.Show("El registro ha sido Eliminado", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			catch
+			{
+				MessageBox.Show("Ha ocurrido un error", "Transacción no completada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		protected void OnBtnSalirClicked(object sender, EventArgs e)
@@ -130,6 +154,7 @@ namespace GtkArchivos
 
 		protected void OnBtnSelecImagenClicked(object sender, EventArgs e)
 		{
+			if (Telefono == null) Telefono = new op_Telefono();
 			Telefono.SeleccionarImagen(imgVisual, this);
 		}
 
@@ -150,6 +175,7 @@ namespace GtkArchivos
 
 		int IndexEnLista(int id)
 		{
+			if (telefonos == null) return -1;
 			int index = -1;
 			foreach (op_Telefono i in telefonos)
 			{
